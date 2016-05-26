@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+
+	<title>Canvas Starter Kit for Salesforce</title>
+
+  <link rel="stylesheet" href="css/canvas-starter.css" />
+	<link rel="stylesheet" href="css/salesforce-lightning-design-system.css" />
+
+</head>
+
+<body ng-app='app'>
+
+	<script src="libraries/canvas-all.js"></script>
+	<script src="libraries/canvas-starter.js"></script>
+	<script src="libraries/angular.js"></script>
+  <script src="libraries/ng-route.js"></script>
+
+	<script src="app/app.js"></script>
+	<script src="app/app-controller.js"></script>
+	<script src="app/app-directives.js"></script>
+
+  <div id="app" initialize ng-controller="AppCtrl" style="height:100%;">
+
+  <div id="sidebar">
+    <h1 id="hello" class="title">Hello {{firstName}}</h1>
+	  <h2 class="sub-title">
+		  Welcome to the Canvas Starter Kit!
+	  </h2>
+	  <p>
+		  If you are seeing this page, then Salesforce has succesfully posted the signed request to the Canvas-Starter kit. Click on a link below to get more details on the Canvas topic.
+	  </p>
+    <br>
+	  <ul style="padding-left:24px;">
+			<li ng-repeat="chapter in chapters" ng-class="{'sidebar': selected!=='{{chapter.label}}', 'sidebar selected': selected==='{{chapter.label}}'}"><a href="#/{{chapter.hash}}" ng-click="updateSelected(chapter.label)">{{chapter.label}}</a></li>
+	  </ul>
+  </div>
+
+  <div id="content" ng-view></div>
+
+  </div>
+
+</body>
+</html>

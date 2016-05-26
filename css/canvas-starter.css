@@ -1,0 +1,64 @@
+h1.title {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+h2.sub-title {
+  font-size: 1.3em;
+  margin: 0.47em 0;
+}
+
+h3.sub-title {
+  font-size: 1.1em;
+  margin: 0.27em 0;
+}
+
+li.sidebar {
+  list-style-type: circle;
+}
+
+li.sidebar.selected {
+  font-weight:bold;
+}
+
+button {
+  border: 1px solid rgb(216,221,230);
+  background-color:white;
+  font-size:.875rem;
+  font-weight: 400;
+  border-radius:.25rem;
+  outline: none;
+  padding:.4rem .8rem .4rem .8rem;
+}
+
+button:hover {
+  background-color:rgb(230,230,230);
+  border: 1px solid rgb(150,150,230);
+}
+
+button:focus {
+  background-color:rgb(210,210,210);
+  border: 1px solid rgb(150,150,230);
+}
+
+div#sidebar {
+  display:inline-block;
+  float:left;
+  height:100%;
+  padding-left:24px;
+  padding-right:12px;
+  min-width:348px;
+  width:25%;
+  border-right-style:solid;
+  border-right-width:0.5px;
+  border-right-color:grey;
+}
+
+div#content {
+  display:inline-block;
+  float:left;
+  height:97%;
+  padding-left:24px;
+  padding-right:12px;
+  overflow-y:auto;
+}

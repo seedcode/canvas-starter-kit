@@ -1,0 +1,6 @@
+<br>
+<h2 id="contentTitle" class="sub-title">The Signed Request</h2>
+<p id="description">When the Signed Request access method is specified for your Canvas app, Salesforce requires a server side process to handle a POST to authorize the Canvas app and grant it access to interact with Salesforce. This kit uses the simplest possible solution for doing this, a PHP page that decodes the POST and launches your app (if authorized). We were very please do find this elegant solution by <span><a href="https://github.com/joshbirk/Canvas-PHP" target="_blank">Joshua Birk</a></span> on github. Our PHP file, <span><a href="#/foo" target="_blank">canvas.php</a></span>, is closely based on his solution.</p>
+<br>
+<p>Once the PHP page decodes and authorizes the POST, it loads the index.html page of the Canvas app. When the Canvas app launches, we use Javascript to retrieve our Signed Request and store it for the session. The Signed Request object contains two objects: client and context. The canvas SDK requires the client object for our calls to Salesforce, as it contains the access token. The context object contains several additional objects we'll use for this session. If you see the stringified object below, then the kit has sucesfully retrieved and stored the Signed Request.</p>
+<pre style="overflow-x:hidden;">{{context}}</pre>
