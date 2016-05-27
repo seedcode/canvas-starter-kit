@@ -7,7 +7,7 @@
 
 if(isset($_REQUEST['signed_request'])){
   $signedRequest = $_REQUEST['signed_request'];
-  $consumer_secret = '<consumersecret>';
+  $consumer_secret = '4016556530579883540';
   $sep = strpos($signedRequest, '.');
   $encodedSig = substr($signedRequest, 0, $sep);
   $encodedEnv = substr($signedRequest, $sep + 1);

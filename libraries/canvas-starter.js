@@ -237,7 +237,7 @@ var cnv = (function(storage) {
 
 	function getConsumerKey(callback) {
     var request = new XMLHttpRequest();
-		request.open('GET','/canvas-starter-kit/php/consumerKey.php');
+		request.open('GET','/php/consumerKey.php');
 		//request.setRequestHeader('Content-Type','text/plain;charset=UTF-8');
 		request.onreadystatechange = function(){
 			if(request.readyState===4 && request.status===200) {
@@ -275,7 +275,7 @@ var cnv = (function(storage) {
 				 params: {
 					 response_type : "token",
 					 client_id : consumerKey,
-					 redirect_uri : encodeURIComponent("https://jason.dayback.me/canvas-starter-kit/oauth/callback.html")
+					 redirect_uri : encodeURIComponent("https://canvas-starter.dayback.com/oauth/callback.html")
 			}});
 		}
 		else {

@@ -72,16 +72,13 @@ div#sidebar {
   height:100%;
   padding-left:24px;
   padding-right:12px;
-  min-width:348px;
-  width:25%;
+  width:348px;
   border-right-style:solid;
   border-right-width:0.5px;
   border-right-color:grey;
 }
 
 div#content {
-  display:inline-block;
-  float:left;
   height:97%;
   padding-left:24px;
   padding-right:12px;

@@ -3,7 +3,8 @@
 
   angular
   .module('app')
-  .directive('initialize', ['$window', '$rootScope', '$timeout','canvas', initialize]);
+  .directive('initialize', ['$window', '$rootScope', '$timeout','canvas', initialize])
+  .directive('sizeContent', ['$window', '$rootScope', '$timeout','canvas', sizeContent]);
 
   function initialize($window, $rootScope, $timeout, canvas) {
     return function(scope, element, attributes) {
@@ -19,9 +20,6 @@
         });
       }
 
-      //accomodate the changing content in 'content'
-      scope.$watchCollection('selected', windowResize);
-
       //On window resize => resize the app
       angular.element($window).on('resize', windowResize);
 
@@ -31,20 +29,27 @@
           $rootScope.$broadcast('resize');
           $timeout.cancel(resize);
           resize = $timeout(function() {
-              resizeBody();
-          }, 100);
+              resizeBody($window);
+          }, 200);
         }
       }
-
-      function resizeBody() {
-        var height = $window.innerHeight;
-        var width = $window.innerWidth;
-        var sideBarWidth = document.getElementById('sidebar').offsetWidth;
-        document.body.style.height = height + "px";
-        document.getElementById('content').style.width = width - sideBarWidth + "px";
-      }
-
     };
+  }
+
+  function sizeContent($window, $rootScope, $timeout) {
+    return function(scope, element, attributes){
+      scope.evalAsync(function() {
+          resizeBody($window);
+      });
+    };
+  }
+
+  function resizeBody(window) {
+    var height = window.innerHeight;
+    var width = window.innerWidth;
+    var sideBarWidth = document.getElementById('sidebar').offsetWidth;
+    document.body.style.height = height + "px";
+    document.getElementById('content').style.width = width - sideBarWidth + "px";
   }
 
 }());

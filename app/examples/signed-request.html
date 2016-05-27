@@ -1,3 +1,4 @@
+<div size-content>
 <br>
 <h2 id="contentTitle" class="sub-title">The Signed Request</h2>
 <p id="description">When the Signed Request access method is specified for your Canvas app, Salesforce requires a server side process to handle a POST to authorize the Canvas app and grant it access to interact with Salesforce. This kit uses the simplest possible solution for doing this, a PHP page that decodes the POST and launches your app (if authorized). We were very please do find this elegant solution by <span><a href="https://github.com/joshbirk/Canvas-PHP" target="_blank">Joshua Birk</a></span> on github. Our PHP file, <span><a href="https://raw.githubusercontent.com/seedcode/canvas-starter-kit/master/php/canvas.php" target="_blank">canvas.php</a></span>, is closely based on his solution. When you set up your Canvas app, you will need to direct it to the canvas.php page. You will also need to add the Consumer Secret, obtained from the Canvas app set-up, to the appropriate place in this page. This page will determine if the app is set to have users self-authorize, or if profiles are pre-authorized by an admin. If set to self-authorize, then the user will be sent to the OAuth page, where they can initiate the authorization process, once authorized they will be directed to the app. If pre-authorized, users will be taken directly to the app.</p>
@@ -6,3 +7,4 @@
 <br>
 <p>In addition to the client object, the SR also contains the context object, which contains information about the user, org, etc. You should see the context object below if the kit has succesfully retreived the SR.
 <pre style="overflow-x:hidden;">{{context}}</pre>
+</div>

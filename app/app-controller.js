@@ -3,9 +3,9 @@
 
   angular
   .module('app')
-  .controller('AppCtrl', ['$scope','canvas', AppCtrl]);
+  .controller('AppCtrl', ['$scope','$window','canvas', AppCtrl]);
 
-  function AppCtrl($scope,canvas) {
+  function AppCtrl($scope,$window,canvas) {
 
      $scope.chapters=canvas.chapters();
 
@@ -43,6 +43,7 @@
        $scope.result = '';
        $scope.newId = '';
        $scope.success='false';
+
 		 }
 
      function recentAccounts() {
@@ -101,6 +102,7 @@
      function navigate(id) {
        cnv.navigate(id,null,true);
      }
+
   }
 
 }());
