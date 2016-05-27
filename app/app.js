@@ -6,13 +6,28 @@ angular
 
   function router($routeProvider){
     $routeProvider.when('/Overview' , {
-      templateUrl: 'app/templates/overview.html'
+      templateUrl: 'app/examples/overview.html'
     })
     .when('/SignedRequest', {
-      templateUrl: 'app/templates/signed-request.html'
+      templateUrl: 'app/examples/signed-request.html'
     })
     .when('/OAuth', {
-      templateUrl: 'app/templates/OAuth.html'
+      templateUrl: 'app/examples/oauth.html'
+    })
+    .when('/Query', {
+      templateUrl: 'app/examples/query.html'
+    })
+    .when('/Editing', {
+      templateUrl: 'app/examples/edit.html'
+    })
+    .when('/Events', {
+      templateUrl: 'app/examples/events.html'
+    })
+    .when('/Resizing', {
+      templateUrl: 'app/examples/resizing.html'
+    })
+    .when('/Lightning', {
+      templateUrl: 'app/examples/lightning.html'
     });
   }
 

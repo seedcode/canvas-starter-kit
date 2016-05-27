@@ -1,0 +1,21 @@
+<br>
+<h2 class="sub-title">Editing Salesforce Data</h2>
+<p>Once initialized, you can use the following functions to create, edit and delete salesforce records. Refer to the <a href="https://resources.docs.salesforce.com/sfdc/pdf/api_rest.pdf" target="_blank">Rest API Guide</a> and the <a href="https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/" target="_blank">Object Reference for Salesforce</a> for the correct field names and validation rules.</p>
+  <pre>  //edit function
+  cnv.editSalesforce(object,request,callback)
+  //delete function
+  cnv.deleteSalesforce(object, id, callback)</pre>
+<p>If the Id property is set in the request object, then the function will PATCH the specified record with the request object. If the Id property is not included in the request object, then a new record will be created via POST.</p>
+<h3 class="sub-title">Example 2</h3>
+<pre>  //create a new Task for tomorrow
+  var due = new Date();
+  due.setDate(due.getDate()+1).toISOString();
+  var request = {'ActivityDate':due.substring(0,10), 'Subject':'Test Task From the canvas-starter-kit'}
+  cnv.editSalesforce('Task', query, callback);</pre>
+<div style="color:rgb(0,112,210)">
+  <button id="newTask" ng-click="newTask()">try this example</button>
+</div>
+<br>
+<div ng-show="success===true">
+<span class="success">Success!</span>&nbsp;&nbsp;<span>Task Id: <a href="javascript:void(null)" ng-click='navigate(newId)'>{{newId}}</a></span>&nbsp;&nbsp;<button class="delete" ng-click="deleteTask(newId)">delete task</button>
+</div>

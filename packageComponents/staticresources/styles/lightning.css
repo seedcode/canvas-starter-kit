@@ -1,0 +1,7 @@
+body.sfdcBody {
+	padding: 0 !important;
+}
+
+iframe {
+	height: 100vh;
+}

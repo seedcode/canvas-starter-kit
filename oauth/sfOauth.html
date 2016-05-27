@@ -7,42 +7,18 @@
 		<!--build-css-end-->
 
 		<script src="../libraries/canvas-all.js"></script>
+		<script src="../libraries/canvas-starter.js"></script>
 
 </head>
 
 <body>
 <script>
-  function loginHandler(e) {
-    var url;
-    if (! Sfdc.canvas.oauth.loggedin()){
-			//if we don't get login.salesforce, then we're in a sandbox.
-			url = Sfdc.canvas.oauth.loginUrl();
-			if(url.indexOf('login.salesforce.com')!==-1) {
-        uri = "https://login.salesforce.com/services/oauth2/authorize";
-			}
-			else {
-        uri = "https://test.salesforce.com/services/oauth2/authorize";
-			}
-			Sfdc.canvas.oauth.login(
-				{uri : uri,
-				 params: {
-				   response_type : "token",
-					 client_id : "",
-					 redirect_uri : encodeURIComponent("https://jason.dayback.me/salesforce/CanvasStarter/oauth/callback.html")
-      }});
-    }
-    else {
-      Sfdc.canvas.oauth.logout();
-      login.innerHTML = "Login";
-    }
-  }
-
   Sfdc.canvas(function(){
 	  var loggedIn = Sfdc.canvas.oauth.loggedin();
     if (loggedIn) {
       Sfdc.canvas.client.repost({refresh : true});
     }
-		login.addEventListener("click" , loginHandler);
+		login.addEventListener("click" , cnv.loginButton);
   });
 </script>
 

@@ -1,0 +1,9 @@
+<br>
+<h2 id="contentTitle" class="sub-title">OAuth</h2>
+<p>Canvas Apps need to provide an OAuth path for users to authenticate the app and get an access token for querying with Salesforce. Even if the Canvas app's access method is the Signed Request(like this one), an org has the option to have admins pre-authorize the app for certain profiles, or allow users to self-authourize. If the self-authorize option is chosen, then an OAuth path needs to be provided for the user. You will need to add your Consumer Key to the <a href="https://raw.githubusercontent.com/seedcode/canvas-starter-kit/master/php/consumerKey.php" target+"_blanK">consumerKey.php</a> file for this routine to work. The Consumer Key is associated with your Connected/Canvas app.To initiate the OAuth process, call <span class="bold">cnv.loginButton()</span><p>
+<br>
+<p>To test your OAuth path, make sure the app is set to allow users to self authorize (setup/Managed Apps/Connected Apps), and click re-authorize below. This will revoke the current access token and re-initialize the authorization pop-up.</p>
+<br>
+<div style="color:rgb(0,112,210);">
+  <button id="auth" ng-click="reAuthorize('auth')">re-authorize</button>
+</div>

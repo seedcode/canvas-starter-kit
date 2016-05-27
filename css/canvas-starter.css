@@ -13,6 +13,24 @@ h3.sub-title {
   margin: 0.27em 0;
 }
 
+ul.result {
+  height:140px;
+  padding-left:24px;
+  list-style-type: none;
+}
+
+li span{
+  float:left;
+}
+
+li span.column1 {
+  width:35%;
+}
+
+li span.column2 {
+  width:15%;
+}
+
 li.sidebar {
   list-style-type: circle;
 }
@@ -28,7 +46,7 @@ button {
   font-weight: 400;
   border-radius:.25rem;
   outline: none;
-  padding:.4rem .8rem .4rem .8rem;
+  padding:.4rem .5rem .4rem .5rem;
 }
 
 button:hover {
@@ -39,6 +57,13 @@ button:hover {
 button:focus {
   background-color:rgb(210,210,210);
   border: 1px solid rgb(150,150,230);
+}
+
+button.delete {
+  padding:.1rem .5rem .1rem .5rem;
+  vertical-align:10%;
+  color:red;
+  margin-left:12px;
 }
 
 div#sidebar {
@@ -62,3 +87,14 @@ div#content {
   padding-right:12px;
   overflow-y:auto;
 }
+
+span.success {
+  font-weight:bold;
+  color:green;
+}
+
+span.bold {
+  font-weight:bolder;
+}
+
+button.delete

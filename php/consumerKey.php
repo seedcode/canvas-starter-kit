@@ -1,3 +1,3 @@
 <?php
-echo '<your consumer key>'
+echo '<consumerkey>'
 ?>

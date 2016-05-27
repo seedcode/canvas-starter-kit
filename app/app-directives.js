@@ -3,23 +3,20 @@
 
   angular
   .module('app')
-  .directive('initialize', ['$window', '$rootScope', '$timeout', initialize]);
+  .directive('initialize', ['$window', '$rootScope', '$timeout','canvas', initialize]);
 
-  function initialize($window, $rootScope, $timeout) {
+  function initialize($window, $rootScope, $timeout, canvas) {
     return function(scope, element, attributes) {
       var resize;
 
       //initialize our canvas library, this will resize the canvas app and force a resize
-      //move this to a service
-      cnv.initialize(checkCanvasLoad);
-      function checkCanvasLoad(result) {
-        if(result.errorCode) {
-          alert(errorCode);
-        }
-        else {
+      canvas.initialize(confirmInitialization);
+
+      function confirmInitialization(result) {
+        scope.$evalAsync(function(){
           scope.firstName = result.context.user.firstName;
           scope.context = JSON.stringify(result.context, null, 2);
-        }
+        });
       }
 
       //accomodate the changing content in 'content'

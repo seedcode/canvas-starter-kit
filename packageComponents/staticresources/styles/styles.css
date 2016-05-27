@@ -1,0 +1,15 @@
+body {
+	margin: 0;
+}
+
+.bodyDiv {
+	overflow: auto;
+}
+
+.bodyDiv table.outerNoSidebar {
+	padding: 0;
+}
+
+.bodyDiv td.noSidebarCell {
+	padding: 0;
+}
