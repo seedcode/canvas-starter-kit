@@ -12,6 +12,7 @@ var cnv = (function(storage) {
 		editSalesforce:editSalesforce,
 		deleteSalesforce:deleteSalesforce,
 		navigate:navigate,
+		getConsumerData:getConsumerData,
 
 	};
 
@@ -235,13 +236,15 @@ var cnv = (function(storage) {
 		return storage[object];
 	}
 
-	function getConsumerKey(callback) {
+	function getConsumerData(callback) {
+		var result;
     var request = new XMLHttpRequest();
-		request.open('GET','/php/consumerKey.php');
+		request.open('GET','/php/consumerData.php');
 		//request.setRequestHeader('Content-Type','text/plain;charset=UTF-8');
 		request.onreadystatechange = function(){
 			if(request.readyState===4 && request.status===200) {
-				callback(request.responseText);
+				result=JSON.parse(request.responseText);
+				callback(result);
 			}
 		};
 		request.send(null);
@@ -251,11 +254,11 @@ var cnv = (function(storage) {
 		login();
 	}
 
-	function login(consumerKey) {
+	function login(consumerData) {
 
 		//retrieve our key if we don't have it
-		if(!consumerKey) {
-			getConsumerKey(login);
+		if(!consumerData) {
+			getConsumerData(login);
 			return;
 		}
 
@@ -274,8 +277,8 @@ var cnv = (function(storage) {
 				{uri : url,
 				 params: {
 					 response_type : "token",
-					 client_id : consumerKey,
-					 redirect_uri : encodeURIComponent("https://canvas-starter.dayback.com/oauth/callback.html")
+					 client_id : consumerData.key,
+					 redirect_uri : encodeURIComponent(consumerData.url)
 			}});
 		}
 		else {

@@ -38,9 +38,9 @@
 
   function sizeContent($window, $rootScope, $timeout) {
     return function(scope, element, attributes){
-      scope.evalAsync(function() {
+      resize = $timeout(function() {
           resizeBody($window);
-      });
+      }, 200);
     };
   }
 
