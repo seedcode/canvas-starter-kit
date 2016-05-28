@@ -121,7 +121,7 @@ Please follow the following steps in order to re-create the kit app in your org.
 
 ##### You should now be able to access the app as a Visualforce tab in Visualforce or Lightning!
 
-[![Hello](master/images/VF.png)](master/images/VF.png)
+[![Hello](img/VF.png)](img/VF.png)
 
 ### Javascript Function Reference
 
