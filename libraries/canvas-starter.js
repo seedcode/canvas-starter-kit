@@ -256,16 +256,25 @@ var cnv = (function(storage) {
 
 	function login(consumerData) {
 
+    var url;
 		//retrieve our key if we don't have it
 		if(!consumerData) {
 			getConsumerData(login);
 			return;
 		}
 
-		var url;
+		//if loginUrl is a parameter, then we're in the oauth page and can use the parameter to determine our target
+		var params = decodeURIComponent(location.search);
+		if(params.indexOf('loginUrl')!==-1){
+      url = decodeURIComponent(location.search.split("=")[1]);
+		}
+		else {
+			//determine the url from the signed request
+			url = storage.sr.context.links.loginUrl;
+		}
+
 		if (! Sfdc.canvas.oauth.loggedin()){
 			//if we don't get login.salesforce, then we're in a sandbox.
-			url = Sfdc.canvas.oauth.loginUrl();
 			if(url.indexOf('login.salesforce.com')!==-1) {
 				url = "https://login.salesforce.com/services/oauth2/authorize";
 			}

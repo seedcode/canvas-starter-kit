@@ -7,7 +7,7 @@
 
 if(isset($_REQUEST['signed_request'])){
   $signedRequest = $_REQUEST['signed_request'];
-  $consumer_secret = '4016556530579883540';
+  $consumer_secret = '<consumer secret for your connected/canvas app>';
   $sep = strpos($signedRequest, '.');
   $encodedSig = substr($signedRequest, 0, $sep);
   $encodedEnv = substr($signedRequest, $sep + 1);
@@ -24,8 +24,8 @@ if(isset($_REQUEST['signed_request'])){
 else if(isset($_GET['_sfdc_canvas_auth'])){
   //received GET instead of signed post means that users must self authorize (org setting)
   //proceed to Oauth page.
-  $url = urlencode($_GET['loginUrl']);
-  header('Location: ../oauth/sfOauth.html');
+  $loginUrl = urlencode($_GET['loginUrl']);
+  header('Location: ../oauth/sfOauth.html?loginUrl='.$loginUrl);
 }
 else{
   //No POST or GET, not opened in Salesforce.

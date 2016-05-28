@@ -20,10 +20,10 @@
 	<script src="libraries/angular.js"></script>
   <script src="libraries/ng-route.js"></script>
 
-	<script src="app/app.js"></script>
-	<script src="app/app-controller.js"></script>
-	<script src="app/app-directives.js"></script>
-	<script src="app/app-services.js"></script>
+	<script src="app/canvas.js"></script>
+	<script src="app/canvas-controller.js"></script>
+	<script src="app/canvas-directives.js"></script>
+	<script src="app/canvas-services.js"></script>
 
   <div id="app" initialize ng-controller="AppCtrl" style="height:100%;">
 
@@ -37,7 +37,7 @@
 	  </p>
     <br>
 	  <ul style="padding-left:24px;">
-			<li ng-repeat="chapter in chapters" ng-class="{'sidebar': selected!=='{{chapter.label}}', 'sidebar selected': selected==='{{chapter.label}}'}"><a href="#/{{chapter.hash}}" ng-click="updateSelected(chapter.label)">{{chapter.label}}</a></li>
+			<li ng-repeat="chapter in chapters" ng-class="{'sidebar': selected!=='{{chapter.label}}', 'sidebar selected': selected==='{{chapter.label}}'}"><a href="Javascript:void(null)" ng-click="updateSelected(chapter.label,chapter.hash)">{{chapter.label}}</a></li>
 	  </ul>
   </div>
 

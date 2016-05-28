@@ -1,14 +1,14 @@
 <div size-content>
 <br>
 <h2 id="contentTitle" class="sub-title">Canvas Events</h2>
-<p>The Canvas Framework provides tools for publishing and subcribing to events between Salesforce and Canvas. Your app is in your domain, so if we want to navigate in the Salesforce domain, then it's best to publish an event from your app to Salesforce and have the subscribing function in the Visualforce page handle it. You may have noticed the navigation working in the previous two examples using the <span class="bold">cnv.navigate</span> function. Understanding how the canvas-starter kit handles this navigation will get you a long way towards understanding Canvas Events. It works by setting up a subscription in the Visualforce page. In the kit, the javascript Static Resource for our Visualforce page starts the subscription on load. You can easily add additional Subscriptions to the visualforce page and the kit's Static Resource Javascript page has a sopt ready for this.</p>
+<p>The Canvas Framework provides tools for publishing and subcribing to events between Salesforce and Canvas. Your app is in your domain, so if we want to navigate in the Salesforce domain, then it's best to publish an event from your app to Salesforce and have the subscribing function in the Visualforce page handle it. You may have noticed the navigation working in the previous two examples using the <span class="bold">cnv.navigate</span> function. Understanding how the canvas-starter kit handles this navigation will get you a long way towards understanding Canvas Events. It works by setting up a subscription in the Visualforce page. In the kit, the javascript Static Resource for our Visualforce page starts the subscription on load. You can easily add additional Subscriptions to the visualforce page. The the kit's Static Resource Javascript page <a href="https://github.com/seedcode/canvas-starter-kit/blob/master/packageComponents/staticresources/canvas-static.js" target="_blank">canvas-static.js</a> has a spot ready for this.</p>
 <pre>  //start subscribing in visualforce
   Sfdc.canvas.controller.subscribe(
     {
       "name": "cnvstart.navigate",
       "onData": navigate
     });</pre>
-<p>Notice that in Visualforce we reference the canvas.controller object, whereas from your Canvas app, we reference canvas.client or canvas.oauth. We then publish this event from our canvas app like this</p>
+<p>Notice that in Visualforce we reference the canvas.controller object, whereas from your Canvas app, we reference canvas.client or canvas.oauth. We then publish this event from our canvas app like this. The <a href="https://github.com/seedcode/canvas-starter-kit/blob/master/libraries/canvas-starter.js" target="_blank">canvas-starter.js</a> file has the function <span class="bold">cnv.publish(name,payload)</span> to handle this.</p>
 <pre>  Sfdc.canvas.client.publish(storage.sr.client,
   {
     "name": "cnvstart.navigate",

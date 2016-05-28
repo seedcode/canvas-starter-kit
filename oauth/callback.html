@@ -5,13 +5,7 @@
 <script type="text/javascript">
     //notify parent window we're authorized
     try {
-          console.log(window.opener);
-          if(window.opener.cnv) {
-            cnv.refreshApp(self.location.hash);
-          }
-          else {
-            window.opener.Sfdc.canvas.oauth.childWindowUnloadNotification(self.location.hash);
-          }
+		  window.opener.Sfdc.canvas.oauth.childWindowUnloadNotification(self.location.hash);
     } catch (ignore) {}
     self.close();
 </script>

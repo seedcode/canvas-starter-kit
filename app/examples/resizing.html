@@ -1,15 +1,15 @@
 <div size-content>
 <br>
 <h2 class="sub-title">Resizing the Canvas App</h2>
-<p>Resizing the Canvas app the way we wanted it was a little challenging, particularly for working in SF1 and Lightning, but you can see that this kit does a nice job resizing to fit the tab size, and if is the behavior your after, then our approach should work great for you. You can easily set the with of the Canvas element to 100% in the Visualforce page...but height is a different matter!</p>
+<p>Resizing the Canvas app the way we wanted it was a little challenging, particularly for working in SF1 and Lightning, but you can see that this kit does a nice job resizing to fit the tab size. If is the behavior you're after, then our approach should work great for you. You can easily set the width of the Canvas element, in this case 100%, in the Visualforce page, but you can't set the height to a percentage, so you need to deal with that programatically.</p>
 <br>
-<p>Our method uses the canvas functions in the Visualforce page to resize the frame to fit the page/tab. The other approach would be if you want your app content to dictate the size of the canvas app on the page. This may be beacuse the app is sharing the page with other apps or objects, and "resizing from within" is the most efficient way to present the app, but there could be other scenarios too.</p>
+<p>Our method uses the canvas functions in the Visualforce page to resize the frame to fit the page/tab. The other approach would be if you want your app content to dictate the size of the canvas app on the page. In this case you do the resizing within the Canvas app itself.</p>
 <br>
-<p>As with Canvas Events, when working with the Canvas from the Visualforce page, we reference the canvas.controller object, so our resize call looks like this where a sub-routine determines the height based on the platform, and the target is the Canvas element id assigned in the Visualforce page:</p>
+<p>As with Canvas Events, when working with the Canvas from the Visualforce page, we reference the canvas.controller object. In the following example, a function determines the height based on the platform, and the target is the Canvas element id assigned in the Visualforce page. The full resize function exists in our Static Resource Javascript file <a href="https://github.com/seedcode/canvas-starter-kit/blob/master/packageComponents/staticresources/canvas-static.js" target="_blank">canvas-static.js</a>:</p>
 <pre>  Sfdc.canvas.controller.resize({
     "height": height + "px"
   }, target);</pre>
-<p>From our Canvas app, the syntax is very simmilar, but we refernce canvas.client. We also don't need to specify the taret, as we're "in" the target. Size parameters are optional, and when not passed the frame attempts to resize based on content, but we had better luck calling the size. Since your in your app's domain, you also need to include the Signed Request client object to authorize the call:</p>
+<p>If we wanted to make the call from within the Canvas app, the syntax is very simmilar, but we would refernce canvas.client. We also don't need to specify the taret, as we're "in" the target. Size parameters are optional, and when not passed the frame attempts to resize based on content, but we had better luck calling the height explicitly. Since you're in your app's domain, you also need to include the Signed Request client object to authorize the call:</p>
 <pre>  Sfdc.canvas.client.resize(sr.client, {
     "height": height + "px"
   });</pre>

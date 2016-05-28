@@ -10,9 +10,10 @@
 <h3 class="sub-title">Example 2</h3>
 <pre>  //create a new Task for tomorrow
   var due = new Date();
+  //for tasks, we just pass the date part of the string.
   due.setDate(due.getDate()+1).toISOString();
   var request = {'ActivityDate':due.substring(0,10), 'Subject':'Test Task From the canvas-starter-kit'}
-  cnv.editSalesforce('Task', query, callback);</pre>
+  cnv.editSalesforce('Task', request, callback);</pre>
 <div style="color:rgb(0,112,210)">
   <button id="newTask" ng-click="newTask()">try this example</button>
 </div>

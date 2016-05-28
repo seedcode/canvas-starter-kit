@@ -3,9 +3,9 @@
 
   angular
   .module('app')
-  .controller('AppCtrl', ['$scope','$window','canvas', AppCtrl]);
+  .controller('AppCtrl', ['$scope','$window','$location','canvas', AppCtrl]);
 
-  function AppCtrl($scope,$window,canvas) {
+  function AppCtrl($scope,$window,$location,canvas) {
 
      $scope.chapters=canvas.chapters();
 
@@ -23,6 +23,8 @@
 
      $scope.navigate = navigate;
 
+     $scope.updateLocation =  updateLocation;
+
      $scope.example1Result = '';
 
      $scope.result = '';
@@ -33,17 +35,23 @@
 
      $scope.success='false';
 
+     function updateLocation(hash) {
+
+     }
+
+
+
      function reAuthorize(id){
        document.getElementById(id).blur();
        canvas.login();
      }
 
-		 function updateSelected(selected) {
+		 function updateSelected(selected,hash) {
 			 $scope.selected = selected;
        $scope.result = '';
        $scope.newId = '';
        $scope.success='false';
-
+       var url = $location.url(hash);
 		 }
 
      function recentAccounts() {
