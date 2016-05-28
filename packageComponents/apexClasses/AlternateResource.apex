@@ -4,12 +4,12 @@ global with sharing class AlternateResource {
         String pre = '';
         if (v==null){
             v = 'canvasStatic';
-            pre = 'cnvstart__';
+            pre = '';
         }
         Long ts = getResourceStamp(v);
         if (ts==null){
             v = 'canvasStatic';
-            pre = 'cnvstart__';
+            pre = '';
             ts = getResourceStamp(v);
         }
         return '/resource/' + ts + '/'+ pre + v;

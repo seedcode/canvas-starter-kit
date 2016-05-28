@@ -10,7 +10,7 @@ class AlternateResourceTest {
             tss = jsr.getResourceStamp(v);
             System.assertEquals(tss, null);
             v = 'canvasStatic';
-            pre = 'cnvstart__';
+            pre = '';
         }
         List<StaticResource> resourceList= [SELECT SystemModStamp FROM StaticResource WHERE Name = :v];
         ts = resourceList[0].systemModStamp.getTime();
@@ -20,7 +20,7 @@ class AlternateResourceTest {
         System.assertEquals(ts, tss);
         if (resourceList[0]==null){ //if specified resource is not found then fall back to stock values
              v = 'canvasStatic';
-             pre = 'cnvstart__';
+             pre = '';
             resourceList= [SELECT SystemModStamp FROM StaticResource WHERE Name = :v];
             System.debug(resourceList);
         }
