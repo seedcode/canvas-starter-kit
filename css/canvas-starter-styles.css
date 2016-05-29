@@ -39,6 +39,14 @@ li.sidebar.selected {
   font-weight:bold;
 }
 
+div.button-wrapper {
+  color:rgb(0,112,210);
+}
+
+div.button-wrapper.oauth {
+  width:30%;margin: 0 auto;text-align:center;
+}
+
 button {
   border: 1px solid rgb(216,221,230);
   background-color:white;
@@ -64,6 +72,13 @@ button.delete {
   vertical-align:10%;
   color:red;
   margin-left:12px;
+}
+
+div#oauth {
+  width:30%;
+  margin: 0 auto;
+  margin-top:10%;
+  text-align:center;
 }
 
 div#sidebar {

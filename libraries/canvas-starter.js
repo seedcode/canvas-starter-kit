@@ -5,8 +5,8 @@ var cnv = (function(storage) {
 		initialize: initialize,
 		publish: publish,
 		getSRData: getSRData,
-		login:login,
 		loginButton:loginButton,
+		logout:logout,
 		refreshApp:refreshApp,
 		querySalesforce:querySalesforce,
 		editSalesforce:editSalesforce,
@@ -55,6 +55,12 @@ var cnv = (function(storage) {
 
     //retrieve our url from the SR object
 		var url = storage.sr.context.links.restUrl + "query/?q=" + newQuery;
+
+		var sr = storage.sr;
+		if(!storage.sr.client.oauthToken) {
+			alert('Error: Access Token Not Available.');
+			return;
+		}
 
 		//Make first call
     Sfdc.canvas.client.ajax(url, {
@@ -263,6 +269,9 @@ var cnv = (function(storage) {
 			return;
 		}
 
+    //remove all currebt access tokens
+		logout();
+
 		//if loginUrl is a parameter, then we're in the oauth page and can use the parameter to determine our target
 		var params = decodeURIComponent(location.search);
 		if(params.indexOf('loginUrl')!==-1){
@@ -273,26 +282,31 @@ var cnv = (function(storage) {
 			url = storage.sr.context.links.loginUrl;
 		}
 
-		if (! Sfdc.canvas.oauth.loggedin()){
-			//if we don't get login.salesforce, then we're in a sandbox.
-			if(url.indexOf('login.salesforce.com')!==-1) {
-				url = "https://login.salesforce.com/services/oauth2/authorize";
-			}
-			else {
-				url = "https://test.salesforce.com/services/oauth2/authorize";
-			}
-			//begin login/authorize process
-			Sfdc.canvas.oauth.login(
-				{uri : url,
-				 params: {
-					 response_type : "token",
-					 client_id : consumerData.key,
-					 redirect_uri : encodeURIComponent(consumerData.url)
-			}});
+		//if we don't get login.salesforce, then we're in a sandbox.
+		if(url.indexOf('login.salesforce.com')!==-1) {
+			url = "https://login.salesforce.com/services/oauth2/authorize";
 		}
 		else {
-			Sfdc.canvas.oauth.logout();
-			login(consumerKey);
+			url = "https://test.salesforce.com/services/oauth2/authorize";
+		}
+		//begin login/authorize process
+		Sfdc.canvas.oauth.login(
+			{uri : url,
+				params: {
+					response_type : "token",
+					client_id : consumerData.key,
+					redirect_uri : encodeURIComponent(consumerData.url)
+			}});
+	}
+
+  function logout(loginPage) {
+		//remove the token from the client object and the canvas object
+		if(storage.sr && storage.sr.client) {
+		  storage.sr.client.oauthToken='';
+		}
+		Sfdc.canvas.oauth.logout();
+		if(loginPage) {
+			window.location.assign('/oauth/sfOauth.html?loginUrl='+encodeURIComponent(storage.sr.context.links.loginUrl));
 		}
 	}
 

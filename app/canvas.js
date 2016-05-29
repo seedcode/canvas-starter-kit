@@ -12,16 +12,16 @@ angular
       templateUrl: 'app/examples/signed-request.html'
     })
     .when('/OAuth', {
-      templateUrl: 'app/examples/oauth.html'
+      templateUrl: 'app/examples/oauth/oauth.html'
     })
     .when('/QueryA', {
-      templateUrl: 'app/examples/queryA.html'
+      templateUrl: 'app/examples/queryA/queryA.html'
     })
     .when('/QueryB', {
-      templateUrl: 'app/examples/queryB.html'
+      templateUrl: 'app/examples/queryB/queryB.html'
     })
     .when('/Editing', {
-      templateUrl: 'app/examples/edit.html'
+      templateUrl: 'app/examples/edit/edit.html'
     })
     .when('/Events', {
       templateUrl: 'app/examples/events.html'

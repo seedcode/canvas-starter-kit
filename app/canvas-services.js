@@ -9,7 +9,8 @@
 
 		return {
       initialize:initialize,
-			login:login,
+			login:cnv.loginButton,
+			logout:cnv.logout,
 			querySalesforce:querySalesforce,
 			editSalesforce:editSalesforce,
 			deleteSalesforce:deleteSalesforce,
@@ -83,10 +84,6 @@
 		  }
 		}
 
-		function login(){
-			cnv.loginButton();
-		}
-
     function chapters(){
       return [
  			 {
@@ -139,7 +136,6 @@
 
 		 ];
     }
-
 
 	}
 }());
