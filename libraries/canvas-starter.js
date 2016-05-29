@@ -61,15 +61,15 @@ var cnv = (function(storage) {
 	    client: storage.sr.client,
 	    success: function(data) {
 		    if (data.status && data.payload) {
-			    process(data.payload);
+			    process(data);
 		    }
 		    else {
-			    var result = [
+			    var result = {'payload':[
 				    {
 					    'errorCode':'No response from Salesforce. Check Internet Connection.',
 					    'message':'No response from Salesforce. Check Internet Connection.',
 				    }
-			    ];
+			    ]};
 			    callback(result);
 			    return;
 		    }
@@ -83,7 +83,7 @@ var cnv = (function(storage) {
 			    client: sr.client,
 			    success: function(data) {
 						if (data.status && data.payload) {
-					    process(data.payload);
+					    process(data);
 				    }
 				    else {
 					    var result = [
@@ -98,7 +98,7 @@ var cnv = (function(storage) {
 			    }
 		    });
 	    }
-	    callback(d.records);
+	    callback(d);
     }
   }
 

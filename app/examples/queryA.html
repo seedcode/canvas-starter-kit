@@ -1,9 +1,8 @@
 <div size-content>
 <br>
-<h2 class="sub-title">Querying Salesforce Data</h2>
-<p>Once initialized, you can use the following function to query Salesforce. Refer to the <a href="https://resources.docs.salesforce.com/sfdc/pdf/api_rest.pdf" target="_blank">Rest API Guide</a> and the <a href="https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/" target="_blank">SOQL documentation</a> for the correct query syntax.
-  <pre>  cnv.querySalesforce(query,callback)</pre>
-<h3 class="sub-title">Example 1</h3>
+<h2 class="sub-title">Querying Salesforce Data A</h2>
+<p>Once initialized, you can use the following function to query Salesforce. Refer to the <a href="https://resources.docs.salesforce.com/sfdc/pdf/api_rest.pdf" target="_blank">Rest API Guide</a> and the <a href="https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/" target="_blank">SOQL documentation</a> for the correct query syntax.</p>
+<pre>  cnv.querySalesforce(query,callback)</pre>
 <pre>  //query for my 6 most recently viewed accounts
   var query = 'SELECT Id,Name,LastViewedDate FROM Account ORDER BY LastViewedDate DESC NULLS LAST LIMIT 6'
   cnv.querySalesforce(query,callback);</pre>

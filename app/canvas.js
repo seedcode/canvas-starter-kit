@@ -14,8 +14,11 @@ angular
     .when('/OAuth', {
       templateUrl: 'app/examples/oauth.html'
     })
-    .when('/Query', {
-      templateUrl: 'app/examples/query.html'
+    .when('/QueryA', {
+      templateUrl: 'app/examples/queryA.html'
+    })
+    .when('/QueryB', {
+      templateUrl: 'app/examples/queryB.html'
     })
     .when('/Editing', {
       templateUrl: 'app/examples/edit.html'

@@ -16,14 +16,32 @@
       chapters:chapters,
 		};
 
-		function querySalesforce(query,callback) {
+		function querySalesforce(query,callback,recordsOnly) {
+			if(recordsOnly!==false){
+				recordsOnly=true;
+			}
 			cnv.querySalesforce(query,process);
 			function process(result) {
-				if(result && result[0].errorCode) {
-					alert(errorCode);
+        if(result.status===0){
+					alert('No Response from Salesforce, Check Internet Connection.');
+					return;
 				}
-				else{
-					callback(result);
+				else if (result.status===200) {
+					//success
+					if(recordsOnly){
+						callback(result.payload.records);
+					}
+					else {
+						callback(result);
+					}
+				}
+				else if(result.payload && result.payload[0] && result.payload[0].errorCode){
+					if(recordsOnly) {
+						alert(result.payload[0].errorCode);
+					}
+					else {
+						callback(result);
+					}
 				}
 			}
 		}
@@ -84,9 +102,13 @@
  				 'hash':'OAuth',
  			 },
  			 {
- 				 'label':'Querying Salesforce Data',
- 				 'hash':'Query',
+ 				 'label':'Querying Salesforce Data A',
+ 				 'hash':'QueryA',
  			 },
+			 {
+				 'label':'Querying Salesforce Data B',
+				 'hash':'QueryB',
+			 },
  			 {
  				 'label':'Editing Salesforce Data',
  				 'hash':'Editing',

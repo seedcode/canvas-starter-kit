@@ -81,7 +81,7 @@ div#sidebar {
 div#content {
   height:97%;
   padding-left:24px;
-  padding-right:12px;
+  padding-right:24px;
   overflow-y:auto;
 }
 
@@ -93,5 +93,3 @@ span.success {
 span.bold {
   font-weight:bolder;
 }
-
-button.delete

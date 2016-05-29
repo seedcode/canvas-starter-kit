@@ -1,0 +1,13 @@
+<div size-content>
+<br>
+<h2 class="sub-title">Querying Salesforce Data B</h2>
+<p>You can expirment with your SOQL here and see how the data (including error messages) is returned from the Canvas SDK below. Refer to the <a href="https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/" target="_blank">Object Reference for Salesforce</a> for the Object and Field Names, and to the <a href="https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/" target="_blank">SOQL documentation</a> for the correct query syntax.</p>
+</br>
+<textarea rows="5" class="slds-textarea" id="query" ng-model="queryEdit" placeholder="foo"></textarea>
+<br>
+<div style="color:rgb(0,112,210)">
+  <button id="runQuery" ng-click="runQuery(queryEdit);">try this example</button>
+  <button ng-show="queryResult" id="clearResult" ng-click="clearResult();">clear result</button>
+</div>
+<pre>{{queryResult}}</pre>
+</div>

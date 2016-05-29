@@ -23,7 +23,9 @@
 
      $scope.navigate = navigate;
 
-     $scope.updateLocation =  updateLocation;
+     $scope.runQuery = runQuery;
+
+     $scope.clearResult = clearResult;
 
      $scope.example1Result = '';
 
@@ -33,13 +35,11 @@
 
      $scope.firstName='';
 
+     $scope.queryResult='';
+
      $scope.success='false';
 
-     function updateLocation(hash) {
-
-     }
-
-
+     $scope.queryEdit='SELECT Id,Name,LastViewedDate\nFROM Account\nORDER BY LastViewedDate DESC NULLS LAST\nLIMIT 6';
 
      function reAuthorize(id){
        document.getElementById(id).blur();
@@ -77,6 +77,17 @@
        canvas.querySalesforce(query,process);
      }
 
+     function runQuery(query) {
+       document.getElementById('runQuery').blur();
+       function display(result) {
+         $scope.$evalAsync(function(){
+            $scope.queryResult += JSON.stringify(result,null,2);
+         });
+       }
+       $scope.queryResult='';
+       canvas.querySalesforce(query,display,false);
+     }
+
      function newTask(){
        document.getElementById('newTask').blur();
        var due = new Date();
@@ -109,6 +120,11 @@
 
      function navigate(id) {
        cnv.navigate(id,null,true);
+     }
+
+     function clearResult() {
+       document.getElementById('clearResult').blur();
+       $scope.queryResult='';
      }
 
   }
