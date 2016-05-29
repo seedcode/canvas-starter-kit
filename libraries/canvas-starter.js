@@ -7,13 +7,12 @@ var cnv = (function(storage) {
 		getSRData: getSRData,
 		loginButton:loginButton,
 		logout:logout,
-		refreshApp:refreshApp,
+		reAuthorize:reAuthorize,
 		querySalesforce:querySalesforce,
 		editSalesforce:editSalesforce,
 		deleteSalesforce:deleteSalesforce,
 		navigate:navigate,
 		getConsumerData:getConsumerData,
-
 	};
 
 	function initialize(callback) {
@@ -27,9 +26,11 @@ var cnv = (function(storage) {
 				storage.sr = JSON.parse(Sfdc.canvas.decode(part));
 				//publish an event to resize the outer frame, now that we're loaded.
 				publish('cnvstart.resize');
-				callback(storage.sr);
+				if (callback) {
+						callback(storage.sr);
+				}
 			}
-			else if(data.status===0){
+			else if(data.status===0 && callback){
 				result = {
 						'errorCode':'No response from Salesforce. Check Internet Connection.',
 						'message':'No response from Salesforce. Check Internet Connection.',
@@ -37,7 +38,7 @@ var cnv = (function(storage) {
 				callback(result);
 				return;
 			}
-			else if (data.payload[0] && data.payload[0].errorCode) {
+			else if (data.payload[0] && data.payload[0].errorCode && callback) {
 				result = {
 						'errorCode':data.payload[0].errorCode,
 						'message':"Salesforce Error: " + cleanError(data.payload[0].message),
@@ -310,9 +311,10 @@ var cnv = (function(storage) {
 		}
 	}
 
-  function refreshApp(hash){
-		var currentHash=window.location.hash;
-		Sfdc.canvas.oauth.childWindowUnloadNotification(hash);
+  function reAuthorize(hash){
+		var decoded = decodeURIComponent(hash).substring(1);
+		window.location.assign('/index.html#/Overview');
+    //Sfdc.canvas.oauth.childWindowUnloadNotification(hash);
 	}
 
 }(

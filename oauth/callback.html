@@ -5,7 +5,12 @@
 <script type="text/javascript">
     //notify parent window we're authorized
     try {
-		  window.opener.Sfdc.canvas.oauth.childWindowUnloadNotification(self.location.hash);
+      if(window.opener.cnv) {
+        window.opener.cnv.reAuthorize(self.location.hash);
+      }
+      else {
+        window.opener.Sfdc.canvas.oauth.childWindowUnloadNotification(self.location.hash);
+      }
     } catch (ignore) {}
     self.close();
 </script>
