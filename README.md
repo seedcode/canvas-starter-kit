@@ -1,11 +1,11 @@
 # Canvas Starter Kit
-This kit is designed for Javascript developers who want to build a Salesforce app using the Force.com Canvas Framework. It can serve as starting point or template for building your own Canvas app and publishing it as a Managed Package on the AppExchange.
+This kit is designed for Javascript developers who want to build a Salesforce app using the Force.com Canvas Framework. It can serve as starting point or template for building your own Canvas app and publishing it as a Managed Package on the [AppExchange](https://appexchange.salesforce.com/).
 
 ### We've been there!
 This kit is the result of our journey bringing our [DayBack Web App](http://DayBack.Com) to the Salesforce [AppExchange](https://appexchange.salesforce.com/listingDetail?listingId=a0N30000000qp64EAA). We learned a lot during this experience, some things easy, some things a little harder and wanted to share those with people who are where we were when we started. We also wanted to provide a simpler "Hello World" Experience for prospective Canvas users. The Java example provided by Salesforce is very good, but a little complicated for Javascript folks (like us) who are maybe a little more comfortable with a simple PHP page than a full Java web app.
 
 ### Help us out!
-Although we are very pleased with how we incorporated our app using the techniques in this kit, we're sure there are better methods we missed (or mis-understood). Please Contribute!
+We are very pleased with how we incorporated our app using the techniques in this kit, but we're sure there are better methods we missed (or mis-understood), so please contribute to improving this kit.
 
 ### What's in the kit?
 ##### Package Components:
@@ -38,8 +38,8 @@ We put together a Managed Package of the Sample Angular app with all of the abov
 ### Building the Kit in Your Org
 
 ##### A Hosted App
-The idea behind Canvas is that you have an existing Web App you'd like to bring into Salesforce, so presumably your app is currently already hosted. Salesforce does require https for your app to work in Canvas. You can get around this a little bit in development by making a browser exception to the PHP endpoint, but not with the OAuth callback endpoint.
-If you are starting from the very beginning, than [Heroku](https://www.heroku.com/) and [Appfog](https://www.ctl.io/appfog/) are excellent services for hosting your app, and Salesforce provides a [Heroku Quickstart](https://developer.salesforce.com/docs/atlas.en-us.salesforce1api.meta/salesforce1api/heroku_quick_start.htm) path for developers.
+The idea behind Canvas is that you have an existing Web App you'd like to bring into Salesforce, so presumably your app is currently already hosted. Salesforce does require **https** for your app to work in Canvas. You can get around this a little bit in development by making a browser exception to the PHP endpoint, but not with the OAuth callback endpoint.
+If you are starting from the very beginning, then [Heroku](https://www.heroku.com/) and [Appfog](https://www.ctl.io/appfog/) are excellent services for hosting your app, and Salesforce provides a [Heroku Quickstart](https://developer.salesforce.com/docs/atlas.en-us.salesforce1api.meta/salesforce1api/heroku_quick_start.htm) path for developers.
 
 The only server technology the kit requires is PHP. Once your hosting is set up, deploy the whole kit, except for the packageComponents folder. You can now set up the components in your Salesforce Developer Org.
 

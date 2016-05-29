@@ -27,7 +27,12 @@
 *.sqlite
 
 # Vagrant #
+######################
 vagrant
+
+# PHP To not accidentally push the keys #
+######################
+php
 
 # OS generated files #
 ######################
