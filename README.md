@@ -125,4 +125,157 @@ Please follow the following steps in order to re-create the kit app in your org.
 
 ### Javascript Function Reference
 
-_coming soon!_
+This kit includes the [Salesforce Canvas Javascript SDK](https://github.com/forcedotcom/SalesforceCanvasJavascriptSDK), and you can reference the directly. The canvas sdk function reference is [here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/forcedotcom/SalesforceCanvasJavascriptSDK/master/docs/symbols/Sfdc.canvas.html
+). Additionally the [canvas-starter.js](https://github.com/seedcode/canvas-starter-kit/blob/master/libraries/canvas-starter.js) file loads the **cnv** object, based on the sdk, with the following public methods:
+
+##### initialze ( [ callback ] )
+
+This function retrieves the signed request after the user has authenticated into salesforce and stores it for subsequent calls in the cnv object. It also publishes a resize event to the visualforce page. In the canvas-starter-kit example, this function is called by an angular directive when the app loads. The callback function is optional and returns the signed request object.
+- **callback** (optional) _function_: function for handling the signed request.
+
+example:
+```javascript
+function sayHi(signedrequest) {
+  document.getElementById('firstName') = signedRequest.client.user.firstName;
+}
+cnv.initialize (sayHi);
+```
+
+##### login ()
+
+Initiates the login pop-up from Salesforce to authenticate the canvas app (when required) . This function requires the **consumer key**, the **consumer secret** and the **callback html** to be set in the php files per step 2 above.
+
+example:
+```html
+  <button ng-click="cnv.login()">Authorize App</button>
+
+```
+
+##### logout ( [ loginPage ] )
+
+Deletes the Access token from the canvas object and the one sored in the cnv object . This function requires the **consumer key**, the **consumer secret** and the **callback html** to be set in the php files per step 2 above.
+- **loginPage** (optional) _boolean_: redirects to the OAuth page (/oauth.sfOauth.html) after the access token is cleared.
+
+example:
+```html
+  <button ng-click="cnv.logout(true)">log out of this app</button>
+```
+
+##### refresh ()
+
+Used as the callback function in the OAuth callback url page(/oauth/callback.html). The function simply navigates back to the index page of the app re-initializing it after log-in.
+
+example:
+```javascript
+//run from the OAuth popover callback.html page
+//notify parent window we're authorized
+try {
+  if(window.opener.cnv) {
+    window.opener.cnv.refresh();
+  }
+  else {
+    //cnv should be there, but use the standard canvas function as a fallback
+    window.opener.Sfdc.canvas.oauth.childWindowUnloadNotification(self.location.hash);
+  }
+} catch (ignore) {}
+self.close();
+```
+
+##### querySalesforce( query, callback )
+
+General AJAX query for getting salesforce data.
+- **query** _string_: A SOQL query
+- **callback** _function_: the handler for the query result.
+
+example:
+```javascript
+//get leads sorted by most recently viewed by me
+var query = 'SELECT Id,Name,LastViewedDate FROM Account ORDER BY LastViewedDate DESC NULLS LAST'
+function showResults(result) {
+  document.getElementById('result').innerHTML = JSON.stringify(result,null,2);
+}
+cnv.querySalesforce(query, showResults);
+```
+
+##### editSalesforce( object, request, callback )
+
+General AJAX query for editing/creating salesforce data.
+- **object** _string_: The target Salesforce Object
+- **request** _object_: A Javascript object for the edit request. If the Id property is not included in the request, then a new record will be created in the target vie **POST**. If the Id is specified in the request, then a **PATCH** will be sent to the target record with the specified changes.
+- **callback** _function_: the handler for the query result.
+
+example:
+```javascript
+//create a test task for tomorrow
+var due = new Date();
+due.setDate(due.getDate()+1);
+due = due.toISOString();
+var request = {
+  'ActivityDate':due.substring(0,10),
+  'Subject':'Test Task From the canvas-starter-kit',
+};
+cnv.editSalesforce('Task',request,process);
+function process(result) {
+  document.getElementById.innerHTML = 'new task result: ' + JSON.stingify(result,null,2);
+}
+
+```
+
+##### deleteSalesforce( object, id, callback )
+
+General AJAX query for deleting salesforce data.
+- **object** _string_: The target Salesforce Object
+- **id** _string_: The target record's Id.
+- **callback** _function_: the handler for the query result.
+
+example:
+```javascript
+cnv.deleteSalesforce('Task',this.id,process);
+function process(result) {
+  if(result && result[0].errorCode) {
+    //error deleting task
+    alert(result[0].errorCode)
+  }
+  else{
+    //task deleted, remove this element.
+    var element = document.getElementById(this.id);
+    element.parentNode.removeChild(element);
+  }
+}
+```
+
+##### publish( event [, payload ] )
+
+General function for publishing an event to a visualforce page. The visualforce page must be subscribing to this event to take action,
+- **event** _string_: The name of the subscription event we want to trigger. Typically has a prefix matching the namespace, although this is not a requirement.
+- **payload** (optional) _object_: The data object to be processed by the subscribing event,.
+
+example:
+```javascript
+//publish an event to the cnvstart.navigate subscription to go to
+//this record (a new tab/window if not in lightning or sf1)
+publish ( "cnvstart.navigate" , {
+  'id':this.id,
+  'new' : true } );
+}
+```
+
+##### navigate( id, url [, newWindow] )
+
+Formatted function for publishing to the cnvstart.navigate subscription and navigating in the parent window.
+- **id** _string_: The id of the target Salesforce Object. If the id is specified, then the url property is ignored. If in Visualforce and the newWindow property is set to true, then the target object will be opened in a new tab/window. If in lightning or SF1 the newWindow property is ignored.
+- **url** _string_: The url to navigate to in the outer window. When specifying the url property, then pass _null_ for the id property.
+- ** newWindow** (optional, default:false) _boolean_: If **url** is specified then the function will attempt to open the target in a new window/tab when newWindow is set to true. If in Visualforce and **id** is specified then the function will attempt to open the target object in a new tab/window. If in Lightning or SF1 then this propert is ignored.
+
+example:
+```javascript
+cnv.navigate(this.id, null, true);
+```
+
+
+
+
+
+
+
+navigate(id,url,newWindow)

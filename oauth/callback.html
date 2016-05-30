@@ -6,9 +6,10 @@
     //notify parent window we're authorized
     try {
       if(window.opener.cnv) {
-        window.opener.cnv.reAuthorize(self.location.hash);
+        window.opener.cnv.refresh();
       }
       else {
+        //cnv should be there, but use the standard canvas function as a fallback
         window.opener.Sfdc.canvas.oauth.childWindowUnloadNotification(self.location.hash);
       }
     } catch (ignore) {}

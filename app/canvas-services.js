@@ -9,7 +9,7 @@
 
 		return {
       initialize:initialize,
-			login:cnv.loginButton,
+			login:cnv.login,
 			logout:cnv.logout,
 			querySalesforce:querySalesforce,
 			editSalesforce:editSalesforce,

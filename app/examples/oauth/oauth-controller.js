@@ -3,20 +3,11 @@
 
   angular
   .module('app')
-  .controller('OAuthCtrl', ['$scope','$window','$location','canvas', OAuthCtrl]);
+  .controller('OAuthCtrl', ['$scope','canvas', OAuthCtrl]);
 
-  function OAuthCtrl($scope,$window,$location,canvas) {
-
-
-     $scope.reAuthorize = reAuthorize;
+  function OAuthCtrl($scope,canvas) {
 
      $scope.logout = logout;
-
-
-     function reAuthorize(id){
-       document.getElementById(id).blur();
-       canvas.login();
-     }
 
      function logout(){
        document.getElementById('logout').blur();

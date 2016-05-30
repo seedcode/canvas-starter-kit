@@ -11,7 +11,7 @@
 
      $scope.chapters=canvas.chapters();
 
-		 $scope.selected= !$scope.selected ? 'Overview' : $scope.selected ;
+		 $scope.selected= 'Overview';
 
 		 $scope.updateSelected = updateSelected;
 

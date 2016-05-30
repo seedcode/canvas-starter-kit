@@ -3,16 +3,14 @@ var cnv = (function(storage) {
 	return {
 
 		initialize: initialize,
-		publish: publish,
-		getSRData: getSRData,
-		loginButton:loginButton,
+		login:login,
 		logout:logout,
-		reAuthorize:reAuthorize,
+		refresh:refresh,
 		querySalesforce:querySalesforce,
 		editSalesforce:editSalesforce,
 		deleteSalesforce:deleteSalesforce,
+		publish: publish,
 		navigate:navigate,
-		getConsumerData:getConsumerData,
 	};
 
 	function initialize(callback) {
@@ -239,34 +237,35 @@ var cnv = (function(storage) {
 		});
 	}
 
-  function getSRData(object) {
-		return storage[object];
+  function login() {
+		console.log('foo');
+		loginAction();
 	}
 
-	function getConsumerData(callback) {
-		var result;
-    var request = new XMLHttpRequest();
-		request.open('GET','/php/consumerData.php');
-		//request.setRequestHeader('Content-Type','text/plain;charset=UTF-8');
-		request.onreadystatechange = function(){
-			if(request.readyState===4 && request.status===200) {
-				result=JSON.parse(request.responseText);
-				callback(result);
-			}
-		};
-		request.send(null);
+  function logout(loginPage) {
+		//remove the token from the client object and the canvas object
+		if(storage.sr && storage.sr.client) {
+		  storage.sr.client.oauthToken='';
+		}
+		Sfdc.canvas.oauth.logout();
+		if(loginPage) {
+			window.location.assign('/oauth/sfOauth.html?loginUrl='+encodeURIComponent(storage.sr.context.links.loginUrl));
+		}
 	}
 
-  function loginButton(e) {
-		login();
+  function refresh(){
+		window.location.assign('/index.html#/Overview');
+    //Sfdc.canvas.oauth.childWindowUnloadNotification(hash);
 	}
 
-	function login(consumerData) {
+  //private functions
+
+	function loginAction(consumerData) {
 
     var url;
 		//retrieve our key if we don't have it
 		if(!consumerData) {
-			getConsumerData(login);
+			getConsumerData(loginAction);
 			return;
 		}
 
@@ -300,21 +299,18 @@ var cnv = (function(storage) {
 			}});
 	}
 
-  function logout(loginPage) {
-		//remove the token from the client object and the canvas object
-		if(storage.sr && storage.sr.client) {
-		  storage.sr.client.oauthToken='';
-		}
-		Sfdc.canvas.oauth.logout();
-		if(loginPage) {
-			window.location.assign('/oauth/sfOauth.html?loginUrl='+encodeURIComponent(storage.sr.context.links.loginUrl));
-		}
-	}
-
-  function reAuthorize(hash){
-		var decoded = decodeURIComponent(hash).substring(1);
-		window.location.assign('/index.html#/Overview');
-    //Sfdc.canvas.oauth.childWindowUnloadNotification(hash);
+	function getConsumerData(callback) {
+		var result;
+    var request = new XMLHttpRequest();
+		request.open('GET','/php/consumerData.php');
+		//request.setRequestHeader('Content-Type','text/plain;charset=UTF-8');
+		request.onreadystatechange = function(){
+			if(request.readyState===4 && request.status===200) {
+				result=JSON.parse(request.responseText);
+				callback(result);
+			}
+		};
+		request.send(null);
 	}
 
 }(
