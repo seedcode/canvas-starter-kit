@@ -271,11 +271,3 @@ example:
 ```javascript
 cnv.navigate(this.id, null, true);
 ```
-
-
-
-
-
-
-
-navigate(id,url,newWindow)
