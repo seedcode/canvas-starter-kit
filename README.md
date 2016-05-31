@@ -1,8 +1,8 @@
 # Canvas Starter Kit
-This kit is designed for Javascript developers who want to build a Salesforce app using the Force.com Canvas Framework. It can serve as starting point or template for building your own Canvas app and publishing it as a Managed Package on the [AppExchange](https://appexchange.salesforce.com/).
+This kit is designed for JavaScript developers who want to build a Salesforce app using the Force.com Canvas Framework. It can serve as starting point or template for building your own Canvas app and publishing it as a Managed Package on the [AppExchange](https://appexchange.salesforce.com/).
 
 ### We've been there!
-This kit is the result of our journey bringing our [DayBack Web App](http://DayBack.Com) to the Salesforce [AppExchange](https://appexchange.salesforce.com/listingDetail?listingId=a0N30000000qp64EAA). We learned a lot during this experience, some things easy, some things a little harder and wanted to share those with people who are where we were when we started. We also wanted to provide a simpler "Hello World" Experience for prospective Canvas users. The Java example provided by Salesforce is very good, but a little complicated for Javascript folks (like us) who are maybe a little more comfortable with a simple PHP page than a full Java web app.
+This kit is the result of our journey bringing our [DayBack Web App](http://DayBack.Com) to the Salesforce [AppExchange](https://appexchange.salesforce.com/listingDetail?listingId=a0N30000000qp64EAA). We learned a lot during this experience, some easy things, some harder things, and wanted to share this with people who are where we were. We also wanted to provide a simpler "Hello World" Experience for prospective Canvas users. The Java example provided by Salesforce is very good, but a little complicated for JavaScript folks (like us) who are maybe a little more comfortable with a simple PHP page than a full Java web app.
 
 ### Help us out!
 We are very pleased with how we incorporated our app using the techniques in this kit, but we're sure there are better methods we missed (or mis-understood), so please contribute to improving this kit.
@@ -10,13 +10,13 @@ We are very pleased with how we incorporated our app using the techniques in thi
 ### What's in the kit?
 ##### Package Components:
 - Visualforce Code for creating a Canvas app in a VF page
-- Static Resource Javascript that provides:
+- [Static Resource](https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_resources.htm) Javascript that provides:
   - Resizing your Canvas app within the tab
   - Navigation in Salesforce from the Canvas app
   - A template for publishing and subscribing to events between the VF page and the Canvas app
   - Functionality across VF, Lightning and SF1
-- Static Resource CSS for optimizing the Visualforce page in the Tab for VF, Lightning and SF1.
-- Apex Classes that allow an Org to use its own Static Resource in an installed Managed Package.
+- Static Resource CSS for optimizing the Visualforce page in the tab for VF, Lightning and SF1.
+- Apex Classes that allow an org to use its own Static Resource in an installed Managed Package.
 
 ##### App Components:
 - [The Salesforce Canvas Javascript SDK](https://github.com/forcedotcom/SalesforceCanvasJavascriptSDK)
@@ -30,7 +30,7 @@ We are very pleased with how we incorporated our app using the techniques in thi
 - A sample Angular app with simple examples of the functionality for re-engineering
 
 ##### Managed Package:
-We put together a Managed Package of the Sample Angular app with all of the above components so you can see how it works completed. We wanted to provide this as an Unmanaged Package, but Connected/Canvas apps are not permitted in Unmanaged Packages. The Managed Package Components are all in this repository and we have step by step instructions, below, for re-building the App that you can turn into your own Managed Package. Install links for the Managed Package:
+We put together a Managed Package of the Sample Angular app with all of the above components so you can see how it works once completed. We wanted to provide this as an Unmanaged Package, but Connected/Canvas apps are not permitted in Unmanaged Packages. The Managed Package Components are all in this repository and you'll find step-by-step instructions, below for re-building the App that you can turn into your own Managed Package. Here are the install links for the Managed Package:
 
 - [Production Install](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t36000000xjk4)
 - [Sandbox Install](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t36000000xjk4)
@@ -41,7 +41,7 @@ We put together a Managed Package of the Sample Angular app with all of the abov
 The idea behind Canvas is that you have an existing Web App you'd like to bring into Salesforce, so presumably your app is currently already hosted. Salesforce does require **https** for your app to work in Canvas. You can get around this a little bit in development by making a browser exception to the PHP endpoint, but not with the OAuth callback endpoint.
 If you are starting from the very beginning, then [Heroku](https://www.heroku.com/) and [Appfog](https://www.ctl.io/appfog/) are excellent services for hosting your app, and Salesforce provides a [Heroku Quickstart](https://developer.salesforce.com/docs/atlas.en-us.salesforce1api.meta/salesforce1api/heroku_quick_start.htm) path for developers.
 
-The only server technology the kit requires is PHP. Once your hosting is set up, deploy the whole kit, except for the packageComponents folder. You can now set up the components in your Salesforce Developer Org.
+The only server technology this kit requires is PHP. Once your hosting is set up, deploy the whole kit, except for the packageComponents folder. You can now set up the components in your Salesforce Developer Org.
 
 ##### Adding the Package components
 You will need to do this in a Salesforce Development Org. Only Development orgs can create Canvas apps and Managed Packages. We recommend going ahead and setting up a [namespace prefix](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_namespace_prefix.htm) for your org now, if you don't already have one. You can't do Unmanaged Packages with Canvas, and you need the prefix for the managed one.
@@ -123,7 +123,7 @@ Please follow the following steps in order to re-create the kit app in your org.
 
 [![Hello](img/VF.png)](img/VF.png)
 
-### Javascript Function Reference
+### JavaScript Function Reference
 
 This kit includes the [Salesforce Canvas Javascript SDK](https://github.com/forcedotcom/SalesforceCanvasJavascriptSDK), and you can reference the directly. The canvas sdk function reference is [here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/forcedotcom/SalesforceCanvasJavascriptSDK/master/docs/symbols/Sfdc.canvas.html
 ). Additionally the [canvas-starter.js](https://github.com/seedcode/canvas-starter-kit/blob/master/libraries/canvas-starter.js) file loads the **cnv** object, based on the sdk, with the following public methods:
@@ -201,7 +201,7 @@ cnv.querySalesforce(query, showResults);
 
 General AJAX query for editing/creating salesforce data.
 - **object** _string_: The target Salesforce Object
-- **request** _object_: A Javascript object for the edit request. If the Id property is not included in the request, then a new record will be created in the target vie **POST**. If the Id is specified in the request, then a **PATCH** will be sent to the target record with the specified changes.
+- **request** _object_: A JavaScript object for the edit request. If the Id property is not included in the request, then a new record will be created in the target vie **POST**. If the Id is specified in the request, then a **PATCH** will be sent to the target record with the specified changes.
 - **callback** _function_: the handler for the query result.
 
 example:
