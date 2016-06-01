@@ -1,8 +1,8 @@
 # Canvas Starter Kit
-This kit is designed for JavaScript developers who want to build a Salesforce app using the Force.com Canvas Framework. It can serve as starting point or template for building your own Canvas app and publishing it as a Managed Package on the [AppExchange](https://appexchange.salesforce.com/).
+This kit is designed for JavaScript developers who want to build a Salesforce app using the Force.com Canvas Framework. It can serve as starting point or template for building your own Canvas app and publishing it as a Managed Package on the AppExchange.
 
 ### We've been there!
-This kit is the result of our journey bringing our [DayBack Web App](http://DayBack.Com) to the Salesforce [AppExchange](https://appexchange.salesforce.com/listingDetail?listingId=a0N30000000qp64EAA). We learned a lot during this experience, some easy things, some harder things, and wanted to share this with people who are where we were. We also wanted to provide a simpler "Hello World" Experience for prospective Canvas users. The Java example provided by Salesforce is very good, but a little complicated for JavaScript folks (like us) who are maybe a little more comfortable with a simple PHP page than a full Java web app.
+This kit is the result of our journey bringing our [DayBack Web App](https://appexchange.salesforce.com/listingDetail?listingId=a0N30000000qp64EAA) to the Salesforce AppExchange. We learned a lot during this experience, some easy things, some harder things, and wanted to share this with people who are where we were. We also wanted to provide a simpler "Hello World" Experience for prospective Canvas users. The Java example provided by Salesforce is very good, but a little complicated for JavaScript folks (like us) who are maybe a little more comfortable with a simple PHP page than a full Java web app.
 
 ### Help us out!
 We are very pleased with how we incorporated our app using the techniques in this kit, but we're sure there are better methods we missed (or mis-understood), so please contribute to improving this kit.
