@@ -29,6 +29,7 @@
 # Vagrant #
 ######################
 vagrant
+connect
 
 # PHP To not accidentally push the keys #
 ######################

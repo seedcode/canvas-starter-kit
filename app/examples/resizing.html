@@ -5,7 +5,7 @@
 <br>
 <p>Our method uses the canvas functions in the Visualforce page to resize the frame to fit the page/tab. The other approach would be if you want your app content to dictate the size of the canvas app on the page. In this case you do the resizing within the Canvas app itself.</p>
 <br>
-<p>As with Canvas Events, when working with the Canvas from the Visualforce page, we reference the canvas.controller object. In the following example, a function determines the height based on the platform, and the target is the Canvas element id assigned in the Visualforce page. The full resize function exists in our Static Resource Javascript file <a href="https://github.com/seedcode/canvas-starter-kit/blob/master/packageComponents/staticresources/canvas-static.js" target="_blank">canvas-static.js</a>:</p>
+<p>As with Canvas Events, when working with the Canvas from the Visualforce page, we reference the canvas.controller object. In the following example, a function determines the height based on the platform, and the target is the Canvas element id assigned in the Visualforce page. The full resize function exists in our Static Resource JavaScript file <a href="https://github.com/seedcode/canvas-starter-kit/blob/master/packageComponents/staticresources/canvas-static.js" target="_blank">canvas-static.js</a>:</p>
 <pre>  Sfdc.canvas.controller.resize({
     "height": height + "px"
   }, target);</pre>
